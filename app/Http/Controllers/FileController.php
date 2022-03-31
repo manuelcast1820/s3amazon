@@ -9,7 +9,7 @@ class FileController extends Controller
 {
     public function index()
     {
-        $s3client = Storage::disk('s3')->getAdapter()->getClient();
+        /* $s3client = Storage::disk('s3')->getAdapter()->getClient();
         $contents = $s3client->listObjects([
             'Bucket'  => env('AWS_BUCKET')
         ]);
@@ -25,9 +25,9 @@ class FileController extends Controller
                        // 'CompressionType' => 'GZIP',
                         'JSON' => [
                             'Type' => 'LINES'
-                           /*  'FileHeaderInfo' => 'USE', 
+                          'FileHeaderInfo' => 'USE', 
                             'RecordDelimiter' => "\n", 
-                            'FieldDelimiter' => '.', */
+                            'FieldDelimiter' => '.', 
                         ],
                     ], 
                     'OutputSerialization' => [
@@ -40,7 +40,7 @@ class FileController extends Controller
                     } 
                 }
             }
-        }
+        } */
         return view('files.index');
     }
 
