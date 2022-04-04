@@ -9,7 +9,7 @@
 <div class="container">
      
     <div class="panel panel-primary">
-      <div class="panel-heading"><h2>laravel File Uploading with Amazon S3 - ItSolutionStuff.com.com</h2></div>
+      <div  style="margin-top: 50px;" class="panel-heading"><h2>Carga de archivos S3</h2></div>
       <div class="panel-body">
      
         @if ($message = Session::get('success'))
@@ -22,7 +22,7 @@
     
         @if (count($errors) > 0)
             <div class="alert alert-danger">
-                <strong>Whoops!</strong> There were some problems with your input.
+                <strong>Whoops!</strong> Error cargando archivo
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -31,7 +31,7 @@
             </div>
         @endif
     
-        <form action="{{ route('image.upload.post') }}" method="POST" enctype="multipart/form-data">
+        <form style="margin-top: 20px;" action="{{ route('image.upload.post') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
     
@@ -40,7 +40,7 @@
                 </div>
      
                 <div class="col-md-6">
-                    <button type="submit" class="btn btn-success">Upload</button>
+                    <button type="submit" class="btn btn-success">Cargar</button>
                 </div>
      
             </div>

@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div style="float: left;width: 100%;padding: 10px 5%;" class="container">
 
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -55,7 +55,9 @@
 
             </div>
         </div>
-        <div class="row">
+        @php
+        @endphp
+        <div style="float: left;width: 100%;" class="row">
             <table id="example" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                 <thead>
                     <tr>
@@ -64,10 +66,12 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($contents as $object)
                     <tr>
                         <td>Tiger</td>
                         <td>prueba</td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
