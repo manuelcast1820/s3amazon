@@ -2,18 +2,18 @@
 <html>
 
 <head>
-    <title></title>
+    <title>laravel File Uploading with Amazon S3 - ItSolutionStuff.com.com</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap.min.css">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+
 
 </head>
 
 <body>
-    <div class="container">
+    <div style="float: left;width: 100%;padding: 10px 5%;" class="container">
 
-        <div style="float: left;width: 100%;text-align: center;margin-top: 30px;" class="panel panel-primary">
+        <div class="panel panel-primary">
             <div class="panel-heading">
                 <h2>Carga de archivos</h2>
             </div>
@@ -38,8 +38,7 @@
                     </div>
                 @endif
 
-                <form style="margin: 40px 0px; " action="{{ route('file.upload') }}" method="POST"
-                    enctype="multipart/form-data">
+                <form action="{{ route('file.upload') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
 
@@ -47,7 +46,7 @@
                             <input type="file" name="file" class="form-control">
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <button type="submit" class="btn btn-success">Cargar</button>
                         </div>
 
@@ -56,7 +55,9 @@
 
             </div>
         </div>
-        <div style="float: left;width: 100%;text-align: center;margin-top: 30px;" class="row">
+        @php
+        @endphp
+        <div style="float: left;width: 100%;" class="row">
             <table id="example" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                 <thead>
                     <tr>
@@ -65,16 +66,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($contents['Contents'] as $content)
-                        <tr>
-                            <td>{{ $content['Key'] }}</td>
-                            <td>
-                                <p><a onclick="getURL('{{ $content['Key'] }}');" href="javascript:">Ver enlace</a></p>
-                                @if(strpos($content['Key'], 'json'))
-                                <p><a onclick="getSQL('{{ $content['Key'] }}');" href="javascript:">Ver SQL</a></p>
-                                @endif
-                            </td>
-                        </tr>
+                    @foreach($contents as $object)
+                    <tr>
+                        <td>Tiger</td>
+                        <td>prueba</td>
+                    </tr>
                     @endforeach
                 </tbody>
             </table>
@@ -84,48 +80,11 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
-
+    
     <script>
         $(document).ready(function() {
             $('#example').DataTable();
         });
-
-        function getURL(object) {
-            var securitytoken = $('meta[name=csrf-token]').attr('content');
-            $.ajax({
-                url:  '/presigned-url',
-                type: 'POST',
-                data: {
-                    _token: securitytoken,
-                    key: object
-                },
-                success: function(res) {
-                    console.log(res.url);
-                    alert(res.url);
-                },
-                error: function(err) {
-                    console.log(JSON.stringify(err))
-                },
-            });
-        }
-
-        function getSQL(object) {
-            var securitytoken = $('meta[name=csrf-token]').attr('content');
-            $.ajax({
-                url:  '/sql-json',
-                type: 'GET',
-                data: {
-                    _token: securitytoken,
-                },
-                success: function(res) {
-                    let resulSQL = JSON.parse(res.select);
-                    alert(resulSQL.client);
-                },
-                error: function(err) {
-                    console.log(JSON.stringify(err))
-                },
-            });
-        }
     </script>
 </body>
 

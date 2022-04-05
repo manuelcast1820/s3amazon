@@ -13,18 +13,16 @@ class ImageController extends Controller
         $contents = $s3client->listObjects([
             'Bucket'  => env('AWS_BUCKET')
         ]);
-        dd($contents);
        try {
-            $contents = Storage::disk('s3')->allFiles('images'); ;
-            dd($contents);
-            /*  = $s3client->listObjects([
+            //$contents = Storage::disk('s3')->allFiles('images'); ;
+            $contents= $s3client->listObjects([
                 'Bucket' => env('AWS_BUCKET'),
-            ]); 
+            ]);  
             
             echo "The contents of your bucket are: \n";
             foreach ($contents['Contents'] as $content) {
                 echo $content['Key'] . "\n";
-            }*/
+            }
         } catch (Exception $exception) {
             echo "Failed to list objects in $bucket_name with error: " . $exception->getMessage();
             exit("Please fix error with listing objects before continuing.");

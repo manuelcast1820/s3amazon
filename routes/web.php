@@ -26,3 +26,7 @@ Route::get('file-upload', [FileController::class, 'index' ])->name('file.index')
 Route::post('image-upload', [ ImageController::class, 'imageUploadPost' ])->name('image.upload.post');
 Route::post('file-upload', [ FileController::class, 'fileUpload' ])->name('file.upload');
 
+Route::get('list-files', [FileController::class, 'listFiles' ]);
+
+Route::get('sql-json', [FileController::class, 'sqlJson' ]);
+Route::post('presigned-url', [FileController::class, 'presignedUrl' ]);
